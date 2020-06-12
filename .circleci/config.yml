@@ -1,8 +1,28 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A first hello"
+
+    working_directory: ~/HelloWorld # ステップが実行されるディレクトリ
+
+    docker: # Docker でステップを実行します
+
+      - image: circleci/openjdk:8-jdk-browsers 
+
+    steps: # 実行可能コマンドの集合
+
+      - checkout # ソースコードを作業ディレクトリにチェックアウトします
+
+      - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
+
+      - save_cache: # プロジェクトの依存関係を保存します
+          paths:
+            - ~/.m2
+          key: HelloWorld-{{ checksum "pom.xml" }}
+
+      - run: mvn package
+
+      - store_test_results: 
+          path: target/surefire-reports
+
+      - store_artifacts: 
+          path: target/*.war
