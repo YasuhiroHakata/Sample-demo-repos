@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~/circleci-demo-java-spring
+    working_directory: ~
 
     docker: # Docker でステップを実行します
 
@@ -13,13 +13,13 @@ jobs:
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
 
       - restore_cache: 
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: HelloWorld-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
       - save_cache: # プロジェクトの依存関係を保存します
           paths:
             - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: HelloWorld-{{ checksum "pom.xml" }}
 
       - run: mvn package
 
