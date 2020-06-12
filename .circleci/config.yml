@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~
+    working_directory: ~/HelloWorld
 
     docker: # Docker でステップを実行します
 
@@ -12,14 +12,12 @@ jobs:
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
 
-      - restore_cache: 
-          key: HelloWorld-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
       - save_cache: # プロジェクトの依存関係を保存します
           paths:
             - ~/.m2
-          key: HelloWorld-{{ checksum "pom.xml" }}
+          key: {{ checksum "pom.xml" }}
 
       - run: mvn package
 
