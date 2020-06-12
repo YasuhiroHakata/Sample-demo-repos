@@ -12,6 +12,8 @@ jobs:
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
 
+      - restore_cache: 
+          key: HelloWorld--{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
       - save_cache: # プロジェクトの依存関係を保存します
