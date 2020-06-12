@@ -1,28 +1,9 @@
-version: 2
-jobs:
-  build:
+version: 2.1
 
-    working_directory: ~/HelloWorld # ステップが実行されるディレクトリ
+orbs:
+  maven: circleci/maven@0.0.12
 
-    docker: # Docker でステップを実行します
-
-      - image: circleci/openjdk:8-jdk-browsers 
-
-    steps: # 実行可能コマンドの集合
-
-      - checkout # ソースコードを作業ディレクトリにチェックアウトします
-
-      - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
-
-      - save_cache: # プロジェクトの依存関係を保存します
-          paths:
-            - ~/.m2
-          key: HelloWorld-{{ checksum "pom.xml" }}
-
-      - run: mvn package
-
-      - store_test_results: 
-          path: target/surefire-reports
-
-      - store_artifacts: 
-          path: target/*.war
+workflows:
+  maven_test:
+    jobs:
+      - maven/test # checkout, build, test, and upload test results
