@@ -27,5 +27,5 @@ jobs: # ステップの集合
 
       - store_artifacts: # uberjar をアーティファクトとして保存します
       # アーティファクト (https://circleci.com/docs/ja/2.0/artifacts/) に表示するテストサマリーをアップロードします
-          path: target/HelloWorld/-0.0.1-SNAPSHOT.jar
+          path: target/HelloWorld-0.0.1-SNAPSHOT.jar
       # デプロイ例については https://circleci.com/docs/ja/2.0/deployment-integrations/ を参照してください
