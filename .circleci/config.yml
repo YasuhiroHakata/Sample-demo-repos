@@ -2,7 +2,7 @@ version: 2 # CircleCI 2.0 を使用します
 jobs: # ステップの集合
   build: # Workflows を使用しない実行では、エントリポイントとして `build` ジョブが必要
 
-    working_directory: ~/ # ステップが実行されるディレクトリ
+    working_directory: ~/HelloWorld # ステップが実行されるディレクトリ
 
     docker: # Docker でステップを実行します
 
