@@ -14,14 +14,14 @@ jobs: # ステップの集合
 
       - restore_cache: # 初回実行後、または `pom.xml` が変更されている場合に、保存されているキャッシュを復元します
           # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
-          key: HelloWorld-{{ checksum "pom.xml" }}
+          key: HelloWorld/{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
       - save_cache: # プロジェクトの依存関係を保存します
           paths:
             - ~/.m2
-          key: HelloWorld-{{ checksum "pom.xml" }}
+          key: HelloWorld/{{ checksum "pom.xml" }}
 
       - run: mvn package # 実際のテストを実行します
 
