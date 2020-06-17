@@ -12,6 +12,10 @@ jobs:
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
 
+      - restore_cache: # 初回実行後、または `pom.xml` が変更されている場合に、保存されているキャッシュを復元します
+          # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
+          key: {{ checksum "pom.xml" }}
+
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
       - save_cache: # プロジェクトの依存関係を保存します
