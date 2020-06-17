@@ -6,8 +6,8 @@ jobs: # ステップの集合
 
     docker: # Docker でステップを実行します
 
-      - image: circleci/openjdk:8-jdk-browsers # このイメージをすべての `steps` が実行されるプライマリコンテナとして使用します
-
+      image: circleci/openjdk:8-jdk # このイメージをすべての `steps` が実行されるプライマリコンテナとして使用します
+                                    # JUnit向けに変更
     steps: # 実行可能コマンドの集合
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
