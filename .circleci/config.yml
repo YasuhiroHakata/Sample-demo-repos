@@ -2,7 +2,7 @@ version: 2 # CircleCI 2.0 を使用します
 jobs: # ステップの集合
   build: # Workflows を使用しない実行では、エントリポイントとして `build` ジョブが必要
 
-    working_directory: ~/test_repo # ステップが実行されるディレクトリ
+    working_directory: ~/HelloWorld # ステップが実行されるディレクトリ
 
     docker: # Docker でステップを実行します
 
@@ -11,10 +11,6 @@ jobs: # ステップの集合
     steps: # 実行可能コマンドの集合
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
-
-      - restore_cache: # 初回実行後、または `pom.xml` が変更されている場合に、保存されているキャッシュを復元します
-          # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
-          key: HelloWorld/{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline # プロジェクトの依存関係を取得します
 
