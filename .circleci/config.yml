@@ -17,7 +17,7 @@ jobs: # ステップの集合
       - save_cache: # プロジェクトの依存関係を保存します
           paths:
             - ~/.m2
-          key: HelloWorld/{{ checksum "pom.xml" }}
+          key: HelloWorld/HelloWorld/{{ checksum "pom.xml" }}
 
       - run: mvn package # 実際のテストを実行します
 
