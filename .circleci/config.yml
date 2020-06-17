@@ -8,6 +8,7 @@ jobs: # ステップの集合
 
       image: circleci/openjdk:8-jdk # このイメージをすべての `steps` が実行されるプライマリコンテナとして使用します
                                     # JUnit向けに変更
+
     steps: # 実行可能コマンドの集合
 
       - checkout # ソースコードを作業ディレクトリにチェックアウトします
