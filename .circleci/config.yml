@@ -22,7 +22,7 @@ jobs: # ステップの集合
             - ~/.m2
           key: HelloWorld-{{ checksum "pom.xml" }}
 
-      - run: mvn package # 実際のテストを実行します
+      - run: mvn package -Dmaven.test.skip=true # 実際のテストを実行します
 
       - store_test_results: # CircleCI ダッシュボードにテストメタデータを表示できるように、`target/surefire-reports` ディレクトリからアップロードします
       # テストサマリー (https://circleci.com/docs/ja/2.0/collect-test-data/) に表示するテスト結果をアップロードします
