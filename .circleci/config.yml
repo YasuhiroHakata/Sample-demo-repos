@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/HelloWorld
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:8-jdk-stretch
     steps:
       - checkout
       - run: mvn dependency:go-offline
