@@ -7,4 +7,6 @@ jobs:
     steps:
       - checkout
       - run: mvn dependency:go-offline
+      - run: mvn dependency:tree
+      - run: mvn dependency:analyze
       - run: mvn package
